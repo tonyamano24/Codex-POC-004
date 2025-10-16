@@ -175,7 +175,9 @@ const bestScore = computed(() => state.bestScore)
 const isRunning = computed(() => state.running)
 const showBanner = computed(() => !state.started || state.gameOver)
 const bannerTitle = computed(() => (state.gameOver ? 'Game Over' : 'Ready?'))
-const bannerSubtitle = computed(() => (state.started ? 'You can do this!' : 'Tap to Begin'))
+const bannerSubtitle = computed(() =>
+  state.gameOver ? 'Tap to retry and beat your high score!' : state.started ? 'You can do this!' : 'Tap to Begin'
+)
 const actionLabel = computed(() => (state.started ? 'Try Again' : 'Start'))
 
 function loadBestScore() {
@@ -328,6 +330,21 @@ function handleFlap() {
   state.velocity = FLAP_VELOCITY
 }
 
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.code === 'Space') {
+    event.preventDefault()
+    handleFlap()
+  }
+  if (event.code === 'Enter') {
+    event.preventDefault()
+    if (state.gameOver) {
+      startGame()
+    } else {
+      pauseGame()
+    }
+  }
+}
+
 onMounted(() => {
   loadBestScore()
   resetGame()
@@ -337,29 +354,11 @@ onMounted(() => {
     el.focus({ preventScroll: true })
   }
 
-  const handleKeydown = (event: KeyboardEvent) => {
-    if (event.code === 'Space') {
-      event.preventDefault()
-      handleFlap()
-    }
-    if (event.code === 'Enter') {
-      event.preventDefault()
-      if (state.gameOver) {
-        startGame()
-      } else {
-        pauseGame()
-      }
-    }
-  }
-
   window.addEventListener('keydown', handleKeydown)
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('keydown', handleKeydown)
-  })
 })
 
 onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeydown)
   if (animationFrame !== null) {
     window.cancelAnimationFrame(animationFrame)
   }
