@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
     "e2e": "playwright test",
-    "eslint": "eslint ."
+    "eslint": "eslint --ext .js,.ts,.vue ."
   },
   "dependencies": {
     "nuxt": "^3.11.2"
