@@ -1,8 +1,23 @@
-node_modules
+# Nuxt build output
 .nuxt
 .output
 .nitro
+
+# Node dependencies
+node_modules
+
+# IDE & editor folders
 .idea
+.vscode
+
+# Logs
 *.log
-.DS_Store
+
+# Environment variables
 .env
+.env.*
+
+# Misc
+.DS_Store
+dist
+coverage
