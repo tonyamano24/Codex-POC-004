@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
-
 @layer base {
   body {
-    @apply bg-slate-900 font-sans text-slate-100;
+    @apply bg-slate-900 text-slate-100 antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/10 bg-slate-900/70 shadow-xl shadow-cyan-500/20 backdrop-blur;
   }
 }

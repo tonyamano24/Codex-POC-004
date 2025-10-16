@@ -1,4 +1,4 @@
-# Codex-POC-004
+# Codex POC 004
 
 A Nuxt 3 powered Flappy Bird experience styled with Tailwind CSS.
 
@@ -12,3 +12,16 @@ npm run dev
 ## Tailwind setup
 
 Tailwind CSS and PostCSS are configured via `tailwind.config.js`, `postcss.config.js`, and the shared entry file at `assets/css/tailwind.css`. Update these files if you add new directories that contain Tailwind utility classes.
+
+## Available scripts
+
+- `npm run dev` – start the local development server
+- `npm run build` – generate an optimized production build
+- `npm run preview` – preview the built application
+- `npm run typecheck` – verify TypeScript types using Nuxt's type generation
+
+## Tech stack
+
+- [Nuxt 3](https://nuxt.com)
+- [Tailwind CSS](https://tailwindcss.com)
+- [PostCSS](https://postcss.org)

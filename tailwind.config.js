@@ -1,34 +1,33 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
+  darkMode: 'class',
   content: [
+    './app.{js,ts,jsx,tsx,vue}',
     './components/**/*.{vue,js,ts}',
-    './composables/**/*.{js,ts}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
+    './composables/**/*.{js,ts}',
     './plugins/**/*.{js,ts}',
-    './app.vue',
-    './error.vue'
+    './nuxt.config.{js,ts}'
   ],
   theme: {
     extend: {
       colors: {
-        sky: {
-          950: '#051726'
+        brand: {
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490',
+          800: '#155e75',
+          900: '#164e63'
         }
       },
-      animation: {
-        'cloud-drift': 'cloud-drift 60s linear infinite',
-        float: 'float 3s ease-in-out infinite'
-      },
-      keyframes: {
-        'cloud-drift': {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-200%)' }
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(-4px)' },
-          '50%': { transform: 'translateY(4px)' }
-        }
+      boxShadow: {
+        pipe: '0 0 0 3px rgba(6, 182, 212, 0.35)'
       }
     }
   },
