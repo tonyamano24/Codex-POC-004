@@ -19,6 +19,22 @@ Tailwind CSS and PostCSS are configured via `tailwind.config.js`, `postcss.confi
 - `npm run build` – generate an optimized production build
 - `npm run preview` – preview the built application
 - `npm run typecheck` – verify TypeScript types using Nuxt's type generation
+- `npm run e2e` – execute the Playwright end-to-end test suite
+
+### End-to-end testing
+
+Playwright powers the automated gameplay checks. After installing project dependencies, download the browser binaries once per environment:
+
+```bash
+npm install
+npx playwright install
+```
+
+Then run the test suite locally with:
+
+```bash
+npm run e2e
+```
 
 ## Tech stack
 
