@@ -39,7 +39,9 @@ const resetGame = () => {
 }
 
 const startGame = () => {
-  if (isRunning.value) return
+  if (isRunning.value) {
+    return
+  }
   isRunning.value = true
   isGameOver.value = false
   animationId && cancelAnimationFrame(animationId)
@@ -72,7 +74,9 @@ const spawnPipe = () => {
 }
 
 const update = () => {
-  if (!isRunning.value) return
+  if (!isRunning.value) {
+    return
+  }
 
   velocity.value += gravity
   birdY.value += velocity.value
@@ -84,8 +88,8 @@ const update = () => {
 
   const speed = 2.75
   pipes.value = pipes.value
-    .map((pipe) => ({ ...pipe, x: pipe.x - speed }))
-    .filter((pipe) => pipe.x + pipeWidth > 0)
+    .map(pipe => ({ ...pipe, x: pipe.x - speed }))
+    .filter(pipe => pipe.x + pipeWidth > 0)
 
   const lastPipe = pipes.value[pipes.value.length - 1]
   if (!lastPipe || lastPipe.x < gameWidth - pipeSpacing) {
@@ -121,7 +125,9 @@ const handlePrimaryCta = () => {
   }
   if (isRunning.value) {
     isRunning.value = false
-    animationId && cancelAnimationFrame(animationId)
+    if (animationId) {
+      cancelAnimationFrame(animationId)
+    }
   } else {
     startGame()
   }
@@ -161,7 +167,9 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  animationId && cancelAnimationFrame(animationId)
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+  }
   window.removeEventListener('keydown', onKeydown)
 })
 
@@ -181,8 +189,8 @@ const ctaLabel = computed(() => (isRunning.value ? 'Pause' : isGameOver.value ? 
           Glide through neon pipes and chase the high score.
         </h1>
         <p class="max-w-2xl text-base text-slate-300 sm:text-lg">
-          Tap, click, or press space to keep the bird in the air. Timing is everything—thread the
-          gap, survive the night sky, and share your best run.
+          Tap, click, or press space to keep the bird in the air. Timing is everything—thread the gap,
+          survive the night sky, and share your best run.
         </p>
       </div>
       <div class="card w-full max-w-xs space-y-2 p-6 text-left">
@@ -199,9 +207,9 @@ const ctaLabel = computed(() => (isRunning.value ? 'Pause' : isGameOver.value ? 
       <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 shadow-2xl shadow-brand-500/20">
         <div
           class="relative aspect-[8/6] w-full cursor-pointer select-none touch-none"
-          @click="onGameTap"
           role="button"
           aria-label="Flappy bird playground"
+          @click="onGameTap"
         >
           <div
             class="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/80 to-slate-950"
@@ -248,8 +256,12 @@ const ctaLabel = computed(() => (isRunning.value ? 'Pause' : isGameOver.value ? 
             class="absolute inset-0 flex items-center justify-center bg-slate-950/70 backdrop-blur"
           >
             <div class="card w-full max-w-sm space-y-4 p-6 text-center">
-              <h2 class="text-xl font-semibold text-white">Crash! Try again?</h2>
-              <p class="text-sm text-slate-300">You cleared {{ score }} pipes. Beat your best of {{ bestScore }}.</p>
+              <h2 class="text-xl font-semibold text-white">
+                Crash! Try again?
+              </h2>
+              <p class="text-sm text-slate-300">
+                You cleared {{ score }} pipes. Beat your best of {{ bestScore }}.
+              </p>
               <button
                 class="w-full rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-brand-500/50 transition hover:bg-brand-400"
                 type="button"
@@ -264,10 +276,12 @@ const ctaLabel = computed(() => (isRunning.value ? 'Pause' : isGameOver.value ? 
 
       <aside class="card flex flex-col gap-6 p-6">
         <div class="space-y-2">
-          <h2 class="text-xl font-semibold text-white">How to play</h2>
+          <h2 class="text-xl font-semibold text-white">
+            How to play
+          </h2>
           <p class="text-sm leading-relaxed text-slate-300">
-            Stay aloft by timing your flaps. Every pipe you clear scores one point. Colliding with the
-            top or bottom of a pipe—or the ground—ends the run.
+            Stay aloft by timing your flaps. Every pipe you clear scores one point. Colliding with the top or
+            bottom of a pipe—or the ground—ends the run.
           </p>
         </div>
         <div class="space-y-4">

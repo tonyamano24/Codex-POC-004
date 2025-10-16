@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM"],
+    "types": ["@types/node"],
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"],
+      "~~/*": ["./*"],
+      "@@/*": ["./*"]
+    }
+  },
+  "include": [
+    "*.ts",
+    "*.d.ts",
+    "*.vue",
+    "app.vue",
+    "components/**/*.vue",
+    "pages/**/*.vue",
+    "tests/**/*.ts",
+    "nuxt.config.ts",
+    "playwright.config.ts"
+  ]
+}

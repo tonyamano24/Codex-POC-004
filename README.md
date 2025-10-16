@@ -20,6 +20,7 @@ Tailwind CSS and PostCSS are configured via `tailwind.config.js`, `postcss.confi
 - `npm run preview` – preview the built application
 - `npm run typecheck` – verify TypeScript types using Nuxt's type generation
 - `npm run e2e` – execute the Playwright end-to-end test suite
+- `npm run eslint` – lint the codebase with the shared Nuxt TypeScript ruleset
 
 ### End-to-end testing
 
@@ -35,6 +36,10 @@ Then run the test suite locally with:
 ```bash
 npm run e2e
 ```
+
+## Continuous integration
+
+GitHub Actions runs ESLint on every push and pull request via `.github/workflows/eslint.yml`. The workflow installs project dependencies with npm, restores cached modules for faster execution, and executes `npm run eslint`. The lint script bootstraps Nuxt's generated `.nuxt/tsconfig.json` when it is missing, so the type-aware rules have the metadata they need on clean checkouts. Make sure new contributions pass the lint check locally before opening a pull request.
 
 ## Tech stack
 
