@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "preview": "nuxt preview",
-    "typecheck": "nuxi typecheck"
+    "typecheck": "nuxi typecheck",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "nuxt": "^3.11.2"
@@ -17,6 +18,7 @@
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
-    "typescript": "~5.4.5"
+    "typescript": "~5.4.5",
+    "@playwright/test": "^1.44.0"
   }
 }
